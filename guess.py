@@ -1,18 +1,24 @@
-#user picks number of tries available when starting
-from sys import argv
-script, num_tries = argv
 import random
+from sys import argv
+# script, num_tries = argv
+num_tries = 0
+#user picks number of tries available when starting
+try:
+    num_tries = int(argv[1])
+except (IndexError, ValueError):
+   	num_tries = 3
+
+user_guess = ""
+
 
 #user picks range of numbers to guess from when starting
 num_range = input("The random number will be between 0 and... \n\tEnter a number. ")
 num_range = int(num_range)
 print ("The number is between 0 and {}".format(num_range))
 
-user_guess = ""
 
 #generate random number
 answer = random.randint(0, num_range)
-
 # print ("answer: {}".format(answer))
 
 
@@ -44,11 +50,11 @@ def guess():
 def guessCompare(user_guess):
 	if answer > user_guess:
 		print ("Too low. Try a little higher.")
-		num_tries -= 1
+		num_tries =- 1
 		guess()
 	elif answer < user_guess:
 		print ("Too high. Try a little lower.")
-		num_tries -= 1
+		num_tries =- 1
 		guess()
 	#guess == number, user wins
 	elif answer == user_guess:
